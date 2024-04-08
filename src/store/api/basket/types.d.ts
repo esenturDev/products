@@ -7,14 +7,15 @@ type Result = {
 	price: string;
 	photo: string;
 	date: string;
+  qeuntyty: string;
 };
 
-interface PostBasket {
-	_id: IdTypes;
+interface EditBasket {
 	titleProduct: string;
 	price: string;
 	photo: string;
 	date: string;
+  qeuntyty: string
 }
 
 namespace Basket {
@@ -29,20 +30,32 @@ namespace Basket {
 		price: string;
 		photo: string;
 		date: string;
+    qeuntyty: string
 	};
 
-	type PostBasketrequest = {
-		_id: IdTypes;
+	type PostBasketRequest = {
+		_id?: IdTypes;
 		titleProduct: string;
 		price: string;
 		photo: string;
 		date: string;
+    qeuntyty: string
 	};
 	type PostBasketResponse = {
-		_id: IdTypes;
+		_id?: IdTypes;
 		titleProduct: string;
 		price: string;
 		photo: string;
 		date: string;
+    qeuntyty: string
 	}[];
+
+	type EditBasketRequest = {
+		_id: IdTypes;
+		newData: EditBasket[];
+	};
+	type EditBasketResponse = {
+		_id: IdTypes;
+		newData: EditBasket[];
+	};
 }

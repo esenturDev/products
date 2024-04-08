@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from "react";
 import scss from "./Header.module.scss";
@@ -5,14 +6,35 @@ import { CustomButton } from "../../Ul/customButton/CustomButton";
 import { createPortal } from "react-dom";
 import { Modal } from "../../Ul/Modal/Modal";
 import CustomInput from "../../Ul/customInpit/CustomInput";
+import { usePostBasketMutation } from "../../../store/api/basket";
 
+interface PostTypeProps {
+  _id?: number;
+  titleProduct: string;
+	price: string;
+	photo: string;
+	date: string;
+  qeuntyty: string
+}
 const Header = () => {
+  const [postBasket] =  usePostBasketMutation();
 	const [openModal, setOpenModal] = useState<boolean>(false);
 	const [titleProduct, setTitleProduct] = useState<string>("");
 	const [price, setPrice] = useState<string>("");
 	const [qeuntyty, setQeuntyty] = useState<string>("");
 	const [photo, setPhoto] = useState<string>("");
 	const [date, setDate] = useState<string>("");
+  
+  const addProduct = async () => {
+    const newData: PostTypeProps = {
+      titleProduct: titleProduct,
+      price: price,
+      photo: photo,
+      date: date,
+      qeuntyty: qeuntyty,
+    }
+    await postBasket(newData)
+  }
 	return (
 		<>
 			<header>
@@ -52,7 +74,7 @@ const Header = () => {
 								placeholder="date..."
 								onChange={setDate}
 							/>
-              <CustomButton>Add</CustomButton>
+              <CustomButton onClick={addProduct}>Add</CustomButton>
 						</div>
 					</Modal>,
 					document.getElementById("modal") as any
