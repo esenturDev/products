@@ -6,8 +6,8 @@ export const Modal: FC<{
 	onClone: (result: boolean) => void;
 }> = ({ children, onClone }) => {
 	return (
-		<div onClick={() => onClone(false)} className={scss.containerModal}>
-			<div className={scss.contentModal}>{children}</div>
+		<div className={scss.containerModal}>
+			<div  className={scss.contentModal}>{children}</div>
 		</div>
 	);
 };

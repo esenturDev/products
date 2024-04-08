@@ -11,7 +11,7 @@ const api = index.injectEndpoints({
 		}),
 		getBasketId: build.query<
 			Basket.GetBasketIdResponse,
-			Basket.GetBasketIdrequest
+			Basket.GetBasketIdRequest
 		>({
 			query: (id) => ({
 				url: `/${id}`,

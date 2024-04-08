@@ -3,7 +3,8 @@ import scss from "./CustomInput.module.scss";
 interface CustomInputProps {
 	value: string;
 	type: string;
-	onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+	// onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange: (event: string) => void;
 	placeholder?: string;
 }
 
@@ -18,7 +19,7 @@ const CustomInput: FC<CustomInputProps> = ({
 			className={scss.inputs}
 			type={type}
 			value={value}
-			onChange={onChange}
+			onChange={(e) => onChange(e.target.value)}
 			placeholder={placeholder}
 		/>
 	);

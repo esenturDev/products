@@ -74,6 +74,12 @@ const Header = () => {
 								placeholder="date..."
 								onChange={setDate}
 							/>
+							<CustomInput
+								type="url"
+								value={photo}
+								placeholder="photos..."
+								onChange={setPhoto}
+							/>
               <CustomButton onClick={addProduct}>Add</CustomButton>
 						</div>
 					</Modal>,

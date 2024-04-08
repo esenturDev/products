@@ -21,11 +21,12 @@ interface EditBasket {
 namespace Basket {
 	type GetBasketRequest = void;
 	type GetBasketResponse = {
-		result: Result[];
-	};
-	type GetBasketIdrequest = string;
+    _id: number;
+		result: Result;
+	}[];
+	type GetBasketIdRequest = string;
 	type GetBasketIdResponse = {
-		_id: IdTypes;
+		_id?: IdTypes;
 		titleProduct: string;
 		price: string;
 		photo: string;
