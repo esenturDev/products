@@ -4,6 +4,8 @@ import { useParams } from "react-router";
 export const ProductId = () => {
 	const { id } = useParams();
 	const { data, isLoading } = useGetBasketIdQuery(id!);
+	console.log(data?._id);
+	
 	return (
 		<div className={scss.ProductId}>
 			<div className="container">

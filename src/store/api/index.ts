@@ -3,13 +3,13 @@ import { BaseQueryFn, createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/r
 
 const baseQuery =  fetchBaseQuery({
   baseUrl: import.meta.env.VITE_BASKET_URL,
-  prepareHeaders: (headers) => {
-    const token = localStorage.getItem('token');
-    if(token) {
-      headers.set('Authorization', `Bearer ${token}`);
-    }
-    return headers
-  }
+  // prepareHeaders: (headers) => {
+  //   const token = localStorage.getItem('token');
+  //   if(token) {
+  //     headers.set('Authorization', `Bearer ${token}`);
+  //   }
+  //   return headers
+  // }
 });
 
 const baseQueryExtended: BaseQueryFn = async (args, api, extraOptions) => {

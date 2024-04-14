@@ -14,12 +14,15 @@ const CustomInput: FC<CustomInputProps> = ({
 	onChange,
 	placeholder,
 }) => {
+	console.log(onChange);
+	console.log(value);
+	
 	return (
 		<input
 			className={scss.inputs}
 			type={type}
 			value={value}
-			onChange={(e) => onChange(e.target.value)}
+			onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChange(e.target.value)}
 			placeholder={placeholder}
 		/>
 	);

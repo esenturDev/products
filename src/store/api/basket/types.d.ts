@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
-type IdTypes = number;
+type IdTypes = string | number;
 type Result = {
 	_id: IdTypes;
 	titleProduct: string;
 	price: string;
 	photo: string;
 	date: string;
-  qeuntyty: string;
+	qeuntyty: string;
 };
 
 interface EditBasket {
@@ -15,14 +15,29 @@ interface EditBasket {
 	price: string;
 	photo: string;
 	date: string;
-  qeuntyty: string
+	qeuntyty: string;
 }
+
+type PostResult = {
+	_id?: IdTypes;
+	titleProduct: string;
+	price: string;
+	photo: string;
+	date: string;
+	qeuntyty: string;
+};
 
 namespace Basket {
 	type GetBasketRequest = void;
 	type GetBasketResponse = {
-    _id: number;
-		result: Result;
+		// _id: number;
+		// result: Result;
+		_id?: IdTypes;
+		titleProduct: string;
+		price: string;
+		photo: string;
+		date: string;
+		qeuntyty: string;
 	}[];
 	type GetBasketIdRequest = string;
 	type GetBasketIdResponse = {
@@ -31,32 +46,44 @@ namespace Basket {
 		price: string;
 		photo: string;
 		date: string;
-    qeuntyty: string
+		qeuntyty: string;
 	};
 
 	type PostBasketRequest = {
+		// newData: PostResult
 		_id?: IdTypes;
 		titleProduct: string;
 		price: string;
 		photo: string;
 		date: string;
-    qeuntyty: string
+		qeuntyty: string;
 	};
 	type PostBasketResponse = {
+		// newData: PostResult
 		_id?: IdTypes;
 		titleProduct: string;
 		price: string;
 		photo: string;
 		date: string;
-    qeuntyty: string
+		qeuntyty: string;
 	}[];
 
 	type EditBasketRequest = {
 		_id: IdTypes;
-		newData: EditBasket[];
+		// newData: EditBasket[];
+		titleProduct: string;
+		price: string;
+		photo: string;
+		date: string;
+		qeuntyty: string;
 	};
 	type EditBasketResponse = {
 		_id: IdTypes;
-		newData: EditBasket[];
+		// newData: EditBasket[];
+		titleProduct: string;
+		price: string;
+		photo: string;
+		date: string;
+		qeuntyty: string;
 	};
 }

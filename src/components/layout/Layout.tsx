@@ -1,3 +1,4 @@
+// import { useState } from "react";
 import { ErrorPages } from "../pages/ErrorPages";
 import { Home } from "../pages/Home";
 import ProductItemId from "../pages/ProductItemId";
@@ -10,8 +11,8 @@ export const Layout = () => {
 			<Header />
 			<main>
 				<Routes>
-					<Route path="/" element={<Home />} />
-					<Route path="/:id" element={<ProductItemId />} />
+					<Route path="/home" element={<Home />} />
+					<Route path="/home/:id" element={<ProductItemId />} />
 					<Route path="*" element={<ErrorPages />} />
 				</Routes>
 			</main>

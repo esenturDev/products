@@ -23,10 +23,10 @@ const api = index.injectEndpoints({
 			Basket.PostBasketResponse,
 			Basket.PostBasketRequest
 		>({
-			query: (newData) => ({
+			query: ({ date, photo, price, qeuntyty, titleProduct }) => ({
 				url: "",
 				method: "POST",
-				body: newData,
+				body: { date, photo, price, qeuntyty, titleProduct },
 			}),
 			invalidatesTags: ["basket"],
 		}),
@@ -41,10 +41,10 @@ const api = index.injectEndpoints({
 			Basket.EditBasketResponse,
 			Basket.EditBasketRequest
 		>({
-			query: ({ _id, newData }) => ({
+			query: ({ _id, date, photo, price, qeuntyty, titleProduct }) => ({
 				url: `/${_id}`,
 				method: "PUT",
-				body: newData,
+				body: { date, photo, price, qeuntyty, titleProduct },
 			}),
 			invalidatesTags: ["basket"],
 		}),

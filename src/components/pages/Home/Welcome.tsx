@@ -1,10 +1,36 @@
 import { Link } from "react-router-dom";
-import { useGetBasketQuery } from "../../../store/api/basket";
+import {
+	useDeleteBasketMutation,
+	useGetBasketQuery,
+	usePutBasketMutation,
+} from "../../../store/api/basket";
 import scss from "./Welcome.module.scss";
+import { useState } from "react";
+import CustomInput from "../../Ul/customInpit/CustomInput";
+import { CustomButton } from "../../Ul/customButton/CustomButton";
 const Welcome = () => {
 	const { data: basketProducts = [], isLoading } = useGetBasketQuery();
-  // console.log(basketProducts?.result);
-  
+	const [editBasket] = usePutBasketMutation();
+	const [deleteBasket] = useDeleteBasketMutation();
+	// console.log(basketProducts?.result);
+	const [titleProduct, setTitleProduct] = useState<string>("");
+	const [price, setPrice] = useState<string>("");
+	const [qeuntyty, setQeuntyty] = useState<string>("");
+	const [date, setDate] = useState<string>("");
+	const [photo, setPhoto] = useState<string>("");
+	const [editResult, setEditResult] = useState<number | null | string>(null);
+	const handleDeleteProduct = async (id: number | string) => {
+		console.log(id);
+
+		await deleteBasket(id);
+	};
+	function handleItemId(id: number | string) {
+		setEditResult(id);
+	}
+	async function editProduct (_id: number | string) {
+		await editBasket({titleProduct, price, qeuntyty, photo, date, _id})
+		setEditResult(null)
+	}
 	return (
 		<div className={scss.welcome}>
 			<div className="container">
@@ -13,17 +39,63 @@ const Welcome = () => {
 						<h2>IsLoading...</h2>
 					) : (
 						basketProducts?.map((item) => (
-							<div key={item.result._id}>
-								<Link to={`/${item.result._id}`}>
-									<img src={item.result.photo} alt={item.result.titleProduct} />
-								</Link>
-								<h2>{item.result.titleProduct}</h2>
-								<p>{item.result.price}</p>
-								<p>{item.result.date}</p>
+							<div key={item._id}>
+								{editResult === item._id ? (
+									<>
+										<div>
+											<CustomInput
+												value={titleProduct}
+												onChange={setTitleProduct}
+												type="text"
+												placeholder="titleProduct"
+											/>
+											<CustomInput
+												type="text"
+												value={price}
+												placeholder="price"
+												onChange={setPrice}
+											/>
+											<CustomInput
+												type="text"
+												value={qeuntyty}
+												placeholder="qeuntyty..."
+												onChange={setQeuntyty}
+											/>
+											<CustomInput
+												type="date"
+												value={date}
+												placeholder="date..."
+												onChange={setDate}
+											/>
+											<CustomInput
+												type="url"
+												value={photo}
+												placeholder="photos..."
+												onChange={setPhoto}
+											/>
+											<CustomButton onClick={() => setEditResult(null)}>Cancel</CustomButton>
+											<CustomButton onClick={() => editProduct(item._id!)}>Same</CustomButton>
+										</div>
+									</>
+								) : (
+									<>
+										<Link to={`/home/${item._id && item._id}`}>
+											<img src={item.photo} alt={item.titleProduct} />
+										</Link>
+										<h2>{item.titleProduct}</h2>
+										<p>{item.price}</p>
+										<p>{item.date}</p>
+										<button onClick={() => handleDeleteProduct(item._id!)}>
+											delete
+										</button>
+										<button onClick={() => handleItemId(item._id!)}>
+											Edit
+										</button>
+									</>
+								)}
 							</div>
 						))
 					)}
-          
 				</div>
 			</div>
 		</div>

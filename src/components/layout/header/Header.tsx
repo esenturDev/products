@@ -15,7 +15,7 @@ interface PostTypeProps {
 	photo: string;
 	date: string;
   qeuntyty: string
-}
+}[]
 const Header = () => {
   const [postBasket] =  usePostBasketMutation();
 	const [openModal, setOpenModal] = useState<boolean>(false);
@@ -26,14 +26,15 @@ const Header = () => {
 	const [date, setDate] = useState<string>("");
   
   const addProduct = async () => {
-    const newData: PostTypeProps = {
-      titleProduct: titleProduct,
-      price: price,
-      photo: photo,
-      date: date,
-      qeuntyty: qeuntyty,
-    }
-    await postBasket(newData)
+    // const newData: PostTypeProps = {
+    //   titleProduct: titleProduct,
+    //   price: price,
+    //   photo: photo,
+    //   date: date,
+    //   qeuntyty: qeuntyty,
+		// 	// _id: 1
+    // }
+    await postBasket({titleProduct, price, photo, date, qeuntyty, })
   }
 	return (
 		<>
