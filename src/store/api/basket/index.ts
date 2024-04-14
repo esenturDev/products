@@ -48,6 +48,14 @@ const api = index.injectEndpoints({
 			}),
 			invalidatesTags: ["basket"],
 		}),
+		patchIsBasket: build.mutation({
+			query: (id, isbasket) => ({
+				url: `/${id}`,
+				method: "PATCH",
+				body: isbasket
+			}),
+			invalidatesTags: ['basket']
+		})
 	}),
 });
 
@@ -57,4 +65,5 @@ export const {
 	usePostBasketMutation,
 	useDeleteBasketMutation,
 	usePutBasketMutation,
+	usePatchIsBasketMutation
 } = api;

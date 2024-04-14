@@ -7,6 +7,7 @@ import { createPortal } from "react-dom";
 import { Modal } from "../../Ul/Modal/Modal";
 import CustomInput from "../../Ul/customInpit/CustomInput";
 import { usePostBasketMutation } from "../../../store/api/basket";
+import { useNavigate } from "react-router";
 
 interface PostTypeProps {
   _id?: number;
@@ -15,9 +16,11 @@ interface PostTypeProps {
 	photo: string;
 	date: string;
   qeuntyty: string
+	isResult? : boolean
 }[]
 const Header = () => {
   const [postBasket] =  usePostBasketMutation();
+	const navigate = useNavigate();
 	const [openModal, setOpenModal] = useState<boolean>(false);
 	const [titleProduct, setTitleProduct] = useState<string>("");
 	const [price, setPrice] = useState<string>("");
@@ -44,6 +47,7 @@ const Header = () => {
 						<CustomButton onClick={() => setOpenModal(true)}>
 							Add product
 						</CustomButton>
+						<CustomButton onClick={() => navigate('/BasketProducts')}>Basket Pages</CustomButton>
 					</div>
 				</div>
 			</header>

@@ -5,11 +5,20 @@ import {
 	usePutBasketMutation,
 } from "../../../store/api/basket";
 import scss from "./Welcome.module.scss";
-import { useState } from "react";
+import { FC, useState } from "react";
 import CustomInput from "../../Ul/customInpit/CustomInput";
 import { CustomButton } from "../../Ul/customButton/CustomButton";
-const Welcome = () => {
+
+interface WelcomeProps {
+	isBasket: boolean | null;
+	setIsBasket: (value: boolean) => void;
+}
+
+const Welcome: FC<WelcomeProps> = ({isBasket, setIsBasket}) => {
+	console.log(isBasket);
+	
 	const { data: basketProducts = [], isLoading } = useGetBasketQuery();
+	
 	const [editBasket] = usePutBasketMutation();
 	const [deleteBasket] = useDeleteBasketMutation();
 	// console.log(basketProducts?.result);
@@ -19,6 +28,7 @@ const Welcome = () => {
 	const [date, setDate] = useState<string>("");
 	const [photo, setPhoto] = useState<string>("");
 	const [editResult, setEditResult] = useState<number | null | string>(null);
+	
 	const handleDeleteProduct = async (id: number | string) => {
 		console.log(id);
 
@@ -31,6 +41,13 @@ const Welcome = () => {
 		await editBasket({titleProduct, price, qeuntyty, photo, date, _id})
 		setEditResult(null)
 	}
+	const handleBasketTrue = (isBasketResult: boolean) => {
+		setIsBasket(!isBasketResult)
+		console.log(isBasketResult);
+		
+	}
+	console.log(basketProducts);
+	const filtredIsbasket = basketProducts.filter((el) => el.isResult === isBasket);
 	return (
 		<div className={scss.welcome}>
 			<div className="container">
@@ -85,17 +102,29 @@ const Welcome = () => {
 										<h2>{item.titleProduct}</h2>
 										<p>{item.price}</p>
 										<p>{item.date}</p>
-										<button onClick={() => handleDeleteProduct(item._id!)}>
+										<CustomButton onClick={() => handleDeleteProduct(item._id!)}>
 											delete
-										</button>
-										<button onClick={() => handleItemId(item._id!)}>
+										</CustomButton>
+										<CustomButton onClick={() => handleItemId(item._id!)}>
 											Edit
-										</button>
+										</CustomButton>
+										<CustomButton onClick={() => handleBasketTrue(item.isResult!)}>Basket</CustomButton>
+										{isBasket === true ? (
+											<h2>Is Basket True</h2>
+										) : (
+											<h2>Is Basket False</h2>
+										)}
 									</>
 								)}
 							</div>
 						))
 					)}
+					{filtredIsbasket.map((itemEl) => (
+						<div key={itemEl._id}>
+							<img src={itemEl.photo} alt={itemEl.titleProduct} />
+							<p>{itemEl.titleProduct}</p>
+						</div>
+					))}
 				</div>
 			</div>
 		</div>

@@ -8,6 +8,7 @@ type Result = {
 	photo: string;
 	date: string;
 	qeuntyty: string;
+	isResult? :boolean
 };
 
 interface EditBasket {
@@ -16,6 +17,7 @@ interface EditBasket {
 	photo: string;
 	date: string;
 	qeuntyty: string;
+	isResult?: boolean
 }
 
 type PostResult = {
@@ -25,6 +27,7 @@ type PostResult = {
 	photo: string;
 	date: string;
 	qeuntyty: string;
+	isResult?: boolean
 };
 
 namespace Basket {
@@ -38,6 +41,7 @@ namespace Basket {
 		photo: string;
 		date: string;
 		qeuntyty: string;
+		isResult?:boolean
 	}[];
 	type GetBasketIdRequest = string;
 	type GetBasketIdResponse = {
@@ -47,6 +51,7 @@ namespace Basket {
 		photo: string;
 		date: string;
 		qeuntyty: string;
+		isResult?:boolean
 	};
 
 	type PostBasketRequest = {
@@ -57,6 +62,7 @@ namespace Basket {
 		photo: string;
 		date: string;
 		qeuntyty: string;
+		isResult?:boolean
 	};
 	type PostBasketResponse = {
 		// newData: PostResult
@@ -66,6 +72,7 @@ namespace Basket {
 		photo: string;
 		date: string;
 		qeuntyty: string;
+		isResult?: boolean;
 	}[];
 
 	type EditBasketRequest = {
@@ -76,6 +83,7 @@ namespace Basket {
 		photo: string;
 		date: string;
 		qeuntyty: string;
+		isResult?: boolean
 	};
 	type EditBasketResponse = {
 		_id: IdTypes;
@@ -85,5 +93,6 @@ namespace Basket {
 		photo: string;
 		date: string;
 		qeuntyty: string;
+		isResult?: boolean;
 	};
 }
